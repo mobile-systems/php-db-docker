@@ -150,7 +150,7 @@ function addNewRecord($table_name,$description,$fk_courseid){
                 echo htmlspecialchars($tablename)," ",htmlspecialchars($value1),"<br>";
                 $rec_exists=check_if_record_exists('courses','courseid',$value2);
                 if($rec_exists){
-                //addNewRecord($tablename,$value1,$value2);
+                addNewRecord($tablename,$value1,$value2);
                 print_table($tablename);
                 }
             else {
@@ -160,7 +160,7 @@ function addNewRecord($table_name,$description,$fk_courseid){
             }    
             else if($tablename==='courses') {  
                 echo htmlspecialchars($tablename)," ",htmlspecialchars($value1),"<br>";
-                //addNewRecord($tablename,$value1,$value2);
+                addNewRecord($tablename,$value1,$value2);
                 print_table($tablename);
             } 
             else{
