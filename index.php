@@ -73,7 +73,7 @@ function addNewRecord($table_name,$description,$fk_courseid){
     if($table_name==='assignments'){
         $query='INSERT INTO assignments (description,courseid)
             VALUES (:descr,:fk_value)';
-        echo $query;
+        
         $statement= $myPDO->prepare($query);
         $statement->bindValue(':descr',$course_name);
         $statement->bindValue(':fk_value',$fk_courseid);
