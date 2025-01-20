@@ -10,7 +10,7 @@ $port="5432";
 $dbname="courses";
 $user="postgres";
 $password="root";
-$dsn='pgsql:host=localhost;port=5432;dbname=courses;';
+$dsn='pgsql:host=localhost;port=5432;dbname=courses';
 
 
 try{
