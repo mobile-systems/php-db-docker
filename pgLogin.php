@@ -26,13 +26,7 @@
         include('view/error.php');
         exit();
     }
-$sql="SELECT * FROM assignments";
-$result = $myPDO->query($sql);
-// $row = $result->fetch(PDO::FETCH_ASSOC);
-// echo "<pre>" ;print_r($row);echo "</pre>"
-while($row = $result->fetch(PDO::FETCH_ASSOC)){
-    echo "from pglogin , {$row['description']},<br>";
-}
+
 
 //below is connection to use to connect to a local database on my computer
 // $host="localhost";
@@ -53,5 +47,12 @@ while($row = $result->fetch(PDO::FETCH_ASSOC)){
 //     $error .= $e->getMessage();
 //     include('view/error.php');
 //     exit();
+// }
+// $sql="SELECT * FROM assignments";
+// $result = $myPDO->query($sql);
+// // $row = $result->fetch(PDO::FETCH_ASSOC);
+// // echo "<pre>" ;print_r($row);echo "</pre>"
+// while($row = $result->fetch(PDO::FETCH_ASSOC)){
+//     echo "from pglogin , {$row['description']},<br>";
 // }
 ?>
