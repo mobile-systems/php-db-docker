@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /var/www/html
 
 # Copy the current directory contents into the container at /var/www/html
-COPY . /var/www/html
+#COPY . /var/www/html
+COPY *.php /var/www/html/
+COPY view /var/www/html/view
 
 # Install any dependencies your PHP application may need
 # For example, if you're using Composer for dependency management:

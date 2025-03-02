@@ -7,8 +7,32 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
-    volumes:
-      - .:/var/www/html
+    # This variant copy ALL CURRENT data to /var/www/html
+    #volumes:
+    #  - .:/var/www/html
     # Add environment variables if needed
     # environment:
     #   - VARIABLE_NAME=value
+  db:
+    image: postgres
+    container_name: database
+    hostname: dpg-cu57vcbv2p9s73a106i0-a.ohio-postgres.render.com
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_DB: "courses_1tjm"
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 'gChUqp9tqaMLq3Yn8hDw9pBxjRm5s35m'
+    restart: always
+    # set shared memory limit when using docker-compose
+    #shm_size: 128mb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/postgresql/data
+    #networks:
+    #  - kafka_networks
+volumes:
+  db-data:
