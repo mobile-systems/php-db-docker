@@ -24,7 +24,7 @@ services:
       POSTGRES_DB: "courses_1tjm"
       POSTGRES_USER: root
       POSTGRES_PASSWORD: 'gChUqp9tqaMLq3Yn8hDw9pBxjRm5s35m'
-    restart: always
+    #restart: always
     # set shared memory limit when using docker-compose
     #shm_size: 128mb
     ports:
@@ -32,7 +32,40 @@ services:
     volumes:
       - ./database:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U habrpguser -d habrdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+    #      memory: 4G
+    #networks:
+    #  - postgres
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "habrpguser@habr.com"
+      PGADMIN_DEFAULT_PASSWORD: "pgadminpwd4habr"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
     #networks:
     #  - kafka_networks
 volumes:
   db-data:
+  pgadmin-data:
