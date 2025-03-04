@@ -16,14 +16,15 @@ services:
   db:
     image: postgres
     container_name: database
-    hostname: dpg-cu57vcbv2p9s73a106i0-a.ohio-postgres.render.com
+    hostname: ${DB_HOST}
+    #dpg-cu57vcbv2p9s73a106i0-a.ohio-postgres.render.com
     build:
       context: ./database
       dockerfile: Dockerfile
     environment:
-      POSTGRES_DB: "courses_1tjm"
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: 'gChUqp9tqaMLq3Yn8hDw9pBxjRm5s35m'
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     #restart: always
     # set shared memory limit when using docker-compose
     #shm_size: 128mb

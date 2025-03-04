@@ -1,3 +1,7 @@
+# Environment
+*.env*
+!.env.example
+
 # Local .terraform directories
 **/.terraform/*
 
